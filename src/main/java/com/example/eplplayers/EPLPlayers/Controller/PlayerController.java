@@ -1,5 +1,7 @@
-package com.example.eplplayers.EPLPlayers.player;
+package com.example.eplplayers.EPLPlayers.Controller;
 
+import com.example.eplplayers.EPLPlayers.model.Player;
+import com.example.eplplayers.EPLPlayers.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

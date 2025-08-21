@@ -1,10 +1,11 @@
-package com.example.eplplayers.EPLPlayers.player;
+package com.example.eplplayers.EPLPlayers.service;
 
+import com.example.eplplayers.EPLPlayers.model.Player;
+import com.example.eplplayers.EPLPlayers.repository.PlayerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component

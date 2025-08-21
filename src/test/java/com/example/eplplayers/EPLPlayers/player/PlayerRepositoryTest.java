@@ -1,5 +1,7 @@
 package com.example.eplplayers.EPLPlayers.player;
 
+import com.example.eplplayers.EPLPlayers.model.Player;
+import com.example.eplplayers.EPLPlayers.repository.PlayerRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

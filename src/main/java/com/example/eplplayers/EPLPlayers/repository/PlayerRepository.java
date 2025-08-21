@@ -1,5 +1,6 @@
-package com.example.eplplayers.EPLPlayers.player;
+package com.example.eplplayers.EPLPlayers.repository;
 
+import com.example.eplplayers.EPLPlayers.model.Player;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
