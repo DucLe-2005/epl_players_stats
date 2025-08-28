@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 import { Search, Users, Trophy, BarChart3, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Button from "@/components/ui/Button";
-import Input from "@/components/ui/initialnput";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import Input from "@/components/ui/Input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import logo from "../assets/premier_league_logo.png"; // or public: src="/epl-logo.png"
 
 export default function HomePage() {
