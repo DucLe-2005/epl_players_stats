@@ -85,11 +85,6 @@ npm install
 npm run dev
 ```
 
-### 4. Run with Docker
-```bash
-docker-compose up --build
-```
-
 ---
 
 ## 🌐 Deployment
