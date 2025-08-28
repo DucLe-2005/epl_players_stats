@@ -68,10 +68,9 @@ cd backend
 
 Environment variables (set in `.env` or system):
 ```ini
-DB_URL=jdbc:postgresql://localhost:5432/eplstats
-DB_USERNAME=postgres
-DB_PASSWORD=yourpassword
-CLOUDINARY_URL=cloudinary://<key>:<secret>@<cloud-name>
+SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/pl_data
+SPRING_DATASOURCE_USERNAME=your_db_username
+SPRING_DATASOURCE_PASSWORD=your_password
 ```
 
 Run locally:
