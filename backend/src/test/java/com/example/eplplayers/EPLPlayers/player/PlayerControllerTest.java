@@ -2,6 +2,7 @@
 
     import com.example.eplplayers.EPLPlayers.Controller.PlayerController;
     import com.example.eplplayers.EPLPlayers.model.Player;
+    import com.example.eplplayers.EPLPlayers.service.JwtService;
     import com.example.eplplayers.EPLPlayers.service.PlayerService;
     import com.fasterxml.jackson.databind.ObjectMapper;
     import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@
     import static org.mockito.BDDMockito.given;
 
     import org.springframework.beans.factory.annotation.Autowired;
+    import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
     import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
     import org.springframework.test.context.bean.override.mockito.MockitoBean;
     import org.springframework.test.web.servlet.MockMvc;
@@ -22,6 +24,7 @@
     import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
     @WebMvcTest(PlayerController.class)
+    @AutoConfigureMockMvc(addFilters = false)
     public class PlayerControllerTest {
 
         @Autowired
@@ -29,6 +32,9 @@
 
         @MockitoBean
         private PlayerService playerService;
+
+        @MockitoBean
+        private JwtService jwtService;
 
         @Autowired
         private ObjectMapper objectMapper;
