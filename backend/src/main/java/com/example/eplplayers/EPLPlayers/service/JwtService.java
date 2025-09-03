@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -17,14 +18,15 @@ import java.util.function.Function;
 
 @Service
 public class JwtService {
-    @Value("${security.jwt.secret-key}")
+    @Value("${security.jwt.secret-key:}")
     private String secretKey;
-    @Value("${security.jwt.expiration-time}")
+    @Value("${security.jwt.expiration-time:3600000}")
     private long jwtExpiration;
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
+
     public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = extractAllClaims(token);
         return claimsResolver.apply(claims);
@@ -49,7 +51,7 @@ public class JwtService {
                 .setSubject(userDetails.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + expiration))
-                .signWith(getSignInKey(), SignatureAlgorithm.ES256)
+                .signWith(getHmacKey(), SignatureAlgorithm.ES256)
                 .compact();
     }
 
@@ -69,14 +71,27 @@ public class JwtService {
     private Claims extractAllClaims(String token) {
         return Jwts
                 .parserBuilder()
-                .setSigningKey(getSignInKey())
+                .setSigningKey(getHmacKey())
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
     }
 
-    private Key getSignInKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+    private SecretKey getHmacKey() {
+        if (secretKey == null || secretKey.isBlank()) {
+            throw new IllegalStateException("JWT secret missing: set JWT_SECRET or JWT_SECRET_KEY (Base64, >=32 bytes when decoded).");
+        }
+        byte[] keyBytes;
+        try {
+            keyBytes = Decoders.BASE64.decode(secretKey);
+        } catch (IllegalArgumentException e) {
+            // If you’d rather support raw (non-Base64) secrets, uncomment below:
+            // keyBytes = secretKeyB64.getBytes(StandardCharsets.UTF_8);
+            throw new IllegalStateException("JWT secret must be Base64-encoded.", e);
+        }
+        if (keyBytes.length < 32) {
+            throw new IllegalStateException("Decoded JWT secret must be at least 32 bytes (256 bits) for HS256.");
+        }
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }
