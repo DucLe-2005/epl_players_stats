@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:8080/api/v1/player"
+const API_BASE_URL = process.env.BACKEND_URL
 
 export async function fetchPlayers({ team, position, nation, name }) {
     const params = new URLSearchParams();
