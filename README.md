@@ -28,7 +28,22 @@ A full-stack web application that provides statistics on English Premier League 
 - **Backend**: Java 17, Spring Boot, JPA/Hibernate, Testcontainers  
 - **Database**: PostgreSQL  
 - **Frontend**: React.js, TailwindCSS  
-- **Infrastructure**: Docker, AWS (EC2, RDS), Vercel  
+- **Infrastructure**: Docker, GGSostgreSQL relational database with normalized schema  
+- Image storage for team logos via **Cloudinary**  
+- Frontend with **React + TailwindCSS** for responsive UI  
+- Integration tests with **Testcontainers**  
+- CI/CD with GitHub Actions  
+- Deployment:
+  - Backend → **GCP Cloud Run (Cloud Build + Google Cloud Buildpacks)**  
+  - Frontend → **Vercel**  
+
+---
+
+## 🛠 Tech Stack
+- **Backend**: Java 17, Spring Boot, JPA/Hibernate, Testcontainers  
+- **Database**: PostgreSQL  
+- **Frontend**: React.js, TailwindCSS  
+- **Infrastructure**: Docker, GCP (Cloud Run), Vercel  
 - **Others**: Cloudinary (image hosting), GitHub Actions (CI/CD)  
 
 ---
